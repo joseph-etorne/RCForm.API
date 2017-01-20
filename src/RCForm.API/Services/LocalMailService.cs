@@ -18,6 +18,8 @@ namespace RCForm.API.Services
             Debug.WriteLine($"Mail from {_mailFrom} to {_mailTo}, with LocalMailService");
             Debug.WriteLine($"Subject: {subject}");
             Debug.WriteLine($"Message: {message}");
+
+            //test
         }
     }
 }
