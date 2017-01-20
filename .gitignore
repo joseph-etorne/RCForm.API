@@ -69,7 +69,7 @@ artifacts/
 *.svclog
 *.scc
 
-# Chutzpah Test files
+# Chutzpah Test files 
 _Chutzpah*
 
 # Visual C++ cache files
