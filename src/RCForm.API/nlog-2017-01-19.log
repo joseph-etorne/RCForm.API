@@ -1,0 +1,80 @@
+2017-01-19 20:23:42.6224|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/  
+2017-01-19 20:23:42.6224|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DEBUG http://localhost:55038/  0
+2017-01-19 20:23:42.9574|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 367.243ms 200 
+2017-01-19 20:23:43.4514|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 896.6949ms 404 text/plain
+2017-01-19 20:23:55.0964|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/10/pointsofinterest  
+2017-01-19 20:23:55.4594|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) with arguments (10) - ModelState is Valid
+2017-01-19 20:23:55.7344|FATAL|RCForm.API.Controllers.PointsOfInterestController|Exception while getting points of interest for city with id 10.
+2017-01-19 20:23:55.7744|INFO|Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor|Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-01-19 20:23:55.8054|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) in 540.4413ms
+2017-01-19 20:23:55.8054|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 716.0242ms 500 text/plain; charset=utf-8
+2017-01-19 20:25:29.9714|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/111/pointsofinterest  
+2017-01-19 20:25:29.9714|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) with arguments (111) - ModelState is Valid
+2017-01-19 20:25:30.0424|FATAL|RCForm.API.Controllers.PointsOfInterestController|Exception while getting points of interest for city with id 111.
+2017-01-19 20:25:30.0474|INFO|Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor|Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-01-19 20:25:30.0474|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) in 74.1118ms
+2017-01-19 20:25:30.0474|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 104.6233ms 500 text/plain; charset=utf-8
+2017-01-19 20:27:25.4534|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/111/pointsofinterest  
+2017-01-19 20:27:25.4534|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) with arguments (111) - ModelState is Valid
+2017-01-19 20:27:25.5014|FATAL|RCForm.API.Controllers.PointsOfInterestController|Exception while getting points of interest for city with id 111.
+2017-01-19 20:27:25.5014|INFO|Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor|Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-01-19 20:27:25.5124|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) in 51.3826ms
+2017-01-19 20:27:25.5124|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 62.4738ms 500 text/plain; charset=utf-8
+2017-01-19 20:27:49.9814|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/  
+2017-01-19 20:27:49.9814|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DEBUG http://localhost:55038/  0
+2017-01-19 20:27:50.1534|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 226.1441ms 200 
+2017-01-19 20:27:50.5154|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 609.4065ms 404 text/plain
+2017-01-19 20:27:56.5134|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/555/pointsofinterest  
+2017-01-19 20:27:56.7874|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) with arguments (555) - ModelState is Valid
+2017-01-19 20:27:56.7974|INFO|RCForm.API.Controllers.PointsOfInterestController|City with id 555 wasn't found.
+2017-01-19 20:27:56.8124|INFO|Microsoft.AspNetCore.Mvc.StatusCodeResult|Executing HttpStatusCodeResult, setting HTTP status code 404
+2017-01-19 20:27:56.8264|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) in 215.8768ms
+2017-01-19 20:27:56.8354|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 321.9233ms 404 text/plain
+2017-01-19 20:44:48.6984|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/  
+2017-01-19 20:44:48.6984|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DEBUG http://localhost:55038/  0
+2017-01-19 20:44:48.8174|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 191.619ms 200 
+2017-01-19 20:44:49.1894|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 576.184ms 404 text/plain
+2017-01-19 20:45:20.3894|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:45:20.4414|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 56.3581ms 404 text/plain
+2017-01-19 20:45:41.1914|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/1/pointsofinterest  
+2017-01-19 20:45:41.4324|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) with arguments (1) - ModelState is Valid
+2017-01-19 20:45:41.4804|INFO|Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor|Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-01-19 20:45:41.7314|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointsOfInterest (RCForm.API) in 468.7281ms
+2017-01-19 20:45:41.7314|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 543.5002ms 200 application/json; charset=utf-8
+2017-01-19 20:45:53.5444|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:45:53.5444|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 7.9141ms 404 text/plain
+2017-01-19 20:46:19.3194|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:46:19.3194|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointOfInterest (RCForm.API) with arguments (1, 2) - ModelState is Valid
+2017-01-19 20:46:19.3304|INFO|Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor|Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-01-19 20:46:19.3304|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointOfInterest (RCForm.API) in 10.4494ms
+2017-01-19 20:46:19.3304|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 19.848ms 200 application/json; charset=utf-8
+2017-01-19 20:46:25.8794|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:46:25.8794|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 5.763ms 404 text/plain
+2017-01-19 20:47:27.0764|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:47:27.1004|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 4.1933ms 404 text/plain
+2017-01-19 20:47:35.9724|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:47:35.9724|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 3.5071ms 404 text/plain
+2017-01-19 20:47:58.7744|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/  
+2017-01-19 20:47:58.7744|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DEBUG http://localhost:55038/  0
+2017-01-19 20:47:58.8954|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 174.8857ms 200 
+2017-01-19 20:47:59.2844|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 577.5733ms 404 text/plain
+2017-01-19 20:48:30.0844|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:48:30.1624|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 78.6141ms 404 text/plain
+2017-01-19 20:48:39.1224|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:48:39.3554|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.GetPointOfInterest (RCForm.API) with arguments (1, 2) - ModelState is Valid
+2017-01-19 20:48:39.3944|INFO|Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor|Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-01-19 20:48:39.6324|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.GetPointOfInterest (RCForm.API) in 446.4601ms
+2017-01-19 20:48:39.6324|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 513.3544ms 200 application/json; charset=utf-8
+2017-01-19 20:49:02.1994|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:49:02.1994|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 6.6297ms 404 text/plain
+2017-01-19 20:49:56.4504|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DEBUG http://localhost:55038/  0
+2017-01-19 20:49:56.4504|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 GET http://localhost:55038/  
+2017-01-19 20:49:56.5884|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 185.1903ms 200 
+2017-01-19 20:49:56.9244|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 543.8721ms 404 text/plain
+2017-01-19 20:50:07.7904|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request starting HTTP/1.1 DELETE http://localhost:55038/api/cities/1/pointsofinterest/2  
+2017-01-19 20:50:08.0744|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executing action method RCForm.API.Controllers.PointsOfInterestController.DeletePointOfInterest (RCForm.API) with arguments (1, 2) - ModelState is Valid
+2017-01-19 20:50:08.0744|FATAL|RCForm.API.Controllers.PointsOfInterestController|Point of interest with ID no. 2 was deleted from database.
+2017-01-19 20:50:08.1014|INFO|Microsoft.AspNetCore.Mvc.StatusCodeResult|Executing HttpStatusCodeResult, setting HTTP status code 204
+2017-01-19 20:50:08.1164|INFO|Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker|Executed action RCForm.API.Controllers.PointsOfInterestController.DeletePointOfInterest (RCForm.API) in 219.4007ms
+2017-01-19 20:50:08.1284|INFO|Microsoft.AspNetCore.Hosting.Internal.WebHost|Request finished in 337.7776ms 204 
+2017-01-19 20:59:02.8454|FATAL|RCForm.API.Controllers.PointsOfInterestController|Point of interest with City ID no. 1 and ID no. 2 was deleted from database.
