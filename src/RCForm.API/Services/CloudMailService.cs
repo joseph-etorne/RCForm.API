@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace RCForm.API.Services
 {
-    public class LocalMailService : IMailService
+    public class CloudMailService : IMailService
     {
         private string to = Startup.Configuration["mailSettings:mailToAddress"];
-        private string from = Startup.Configuration["MailSettings:mailFromAddress"];
+        private string from = Startup.Configuration["mailSettings:mailFromAddress"];
 
         public void Send(string subject, string message)
         {

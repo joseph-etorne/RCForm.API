@@ -20,4 +20,9 @@
     <DnxInvisibleContent Include=".bowerrc" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet.Web\Microsoft.DotNet.Web.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appSettings_1Production_1json__JSONSchema="http://json.schemastore.org/bundleconfig" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

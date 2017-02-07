@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RCForm.API.Models;
+using RCForm.API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,14 @@ namespace RCForm.API.Controllers
     public class PointsOfInterestController : Controller
     {
         private ILogger<PointsOfInterestController> _logger;
+        private IMailService _mailService;
+        private IRCFormRepository _repo;
 
-        public PointsOfInterestController(ILogger<PointsOfInterestController> logger)
+        public PointsOfInterestController(ILogger<PointsOfInterestController> logger, IMailService mailService, IRCFormRepository repo)
         {
             _logger = logger;
+            _mailService = mailService;
+            _repo = repo;
         }
 
         [HttpGet("{cityId}/pointsofinterest")]
@@ -26,17 +31,38 @@ namespace RCForm.API.Controllers
         {
             try
             {
-                //throw new Exception("Exception sample.");
 
-                var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-                if (city == null)
+                if (!_repo.CityExists(cityId))
                 {
                     _logger.LogInformation($"City with id {cityId} wasn't found.");
                     return NotFound();
                 }
 
-                return Ok(city.PointsOfInterest);
+                var poiForCity = _repo.GetPointsOfInterestForCity(cityId);
+
+                var poiForCityResults = new List<PointOfInterestDTO>();
+
+                foreach (var poi in poiForCity)
+                {
+                    poiForCityResults.Add(new PointOfInterestDTO()
+                    {
+                        Id = poi.Id,
+                        Name = poi.Name,
+                        Description = poi.Description
+                    });
+                }
+
+                return Ok(poiForCityResults);
+                
+                //var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+
+                //if (city == null)
+                //{
+                //    _logger.LogInformation($"City with id {cityId} wasn't found.");
+                //    return NotFound();
+                //}
+
+                //return Ok(city.PointsOfInterest);
             }
             catch (Exception ex)
             {
@@ -49,21 +75,44 @@ namespace RCForm.API.Controllers
         [HttpGet("{cityId}/pointsofinterest/{id}", Name ="GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            if (city == null)
+            if (!_repo.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            var pointOfInterest = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
+            var poi = _repo.GetPointOfInterestForCity(cityId, id);
 
-            if (pointOfInterest == null)
+            if (poi==null)
             {
                 return NotFound();
             }
 
-            return Ok(pointOfInterest);
+            var poiResult = new PointOfInterestDTO()
+            {
+                Id = poi.Id,
+                Name = poi.Name,
+                Description = poi.Description
+            };
+
+            return Ok(poiResult);
+
+
+
+            //var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+
+            //if (city == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var pointOfInterest = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
+
+            //if (pointOfInterest == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(pointOfInterest);
         }
 
         [HttpPost("{cityId}/pointsofinterest")]
@@ -202,6 +251,9 @@ namespace RCForm.API.Controllers
             }
 
             city.PointsOfInterest.Remove(poi);
+
+            _mailService.Send("Point of Interest Deleted.", $"Point of interest {poi.Name} with id {poi.Id} was deleted.");
+
             _logger.LogCritical($"Point of interest with City ID no. {cityId} and ID no. {id} was deleted from database.");
 
             return NoContent();
