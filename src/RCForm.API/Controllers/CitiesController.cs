@@ -43,44 +43,14 @@ namespace RCForm.API.Controllers
 
             if (includePOI)
             {
-                var cityResult = new CityDTO()
-                {
-                    Id = city.Id,
-                    Name = city.Name,
-                    Description = city.Description,
-                };
-
-                foreach (var poi in city.PointsOfInterest)
-                {
-                    cityResult.PointsOfInterest.Add(new PointOfInterestDTO()
-                    {
-                        Id = poi.Id,
-                        Name = poi.Name,
-                        Description = poi.Description
-                    });
-                }
+                var cityResult = Mapper.Map<CityDTO>(city);
 
                 return Ok(cityResult);
             }
 
-            var cityWithoutPOIResult = new CityWithoutPOIDTO()
-            {
-                Id = city.Id,
-                Name = city.Name,
-                Description = city.Description
-            };
+            var cityWithoutPOIResult = Mapper.Map<CityWithoutPOIDTO>(city);
 
             return Ok(cityWithoutPOIResult);
-
-
-            //var cityToReturn = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
-
-            //if (cityToReturn==null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return Ok(cityToReturn);
 
         }
 

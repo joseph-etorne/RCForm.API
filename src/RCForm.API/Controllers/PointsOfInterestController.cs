@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RCForm.API.Models;
@@ -40,29 +41,10 @@ namespace RCForm.API.Controllers
 
                 var poiForCity = _repo.GetPointsOfInterestForCity(cityId);
 
-                var poiForCityResults = new List<PointOfInterestDTO>();
-
-                foreach (var poi in poiForCity)
-                {
-                    poiForCityResults.Add(new PointOfInterestDTO()
-                    {
-                        Id = poi.Id,
-                        Name = poi.Name,
-                        Description = poi.Description
-                    });
-                }
+                var poiForCityResults = Mapper.Map<IEnumerable<PointOfInterestDTO>>(poiForCity);
 
                 return Ok(poiForCityResults);
                 
-                //var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-                //if (city == null)
-                //{
-                //    _logger.LogInformation($"City with id {cityId} wasn't found.");
-                //    return NotFound();
-                //}
-
-                //return Ok(city.PointsOfInterest);
             }
             catch (Exception ex)
             {
@@ -87,32 +69,10 @@ namespace RCForm.API.Controllers
                 return NotFound();
             }
 
-            var poiResult = new PointOfInterestDTO()
-            {
-                Id = poi.Id,
-                Name = poi.Name,
-                Description = poi.Description
-            };
+            var poiResult = Mapper.Map<PointOfInterestDTO>(poi);
 
             return Ok(poiResult);
 
-
-
-            //var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            //if (city == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var pointOfInterest = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
-
-            //if (pointOfInterest == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return Ok(pointOfInterest);
         }
 
         [HttpPost("{cityId}/pointsofinterest")]
@@ -128,27 +88,25 @@ namespace RCForm.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            if (city == null)
+            if (!_repo.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            //demo to be improved
-            var maxPointOfInterestId = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(p => p.Id);
 
-            var finalPointOfInterest = new PointOfInterestDTO()
+            var finalPointOfInterest = Mapper.Map<Entities.PointOfInterest>(pointOfInterest);
+
+            _repo.AddPointOfInterestForCity(cityId, finalPointOfInterest);
+
+            if (!_repo.Save())
             {
-                Id = ++maxPointOfInterestId,
-                Name = pointOfInterest.Name,
-                Description = pointOfInterest.Description
-            };
+                return StatusCode(500, "A problem happened while handling your request.");
+            }
 
-            city.PointsOfInterest.Add(finalPointOfInterest);
+            var createdPOItoReturn = Mapper.Map<PointOfInterestDTO>(finalPointOfInterest);
 
             return CreatedAtRoute("GetPointOfInterest", new
-            { cityId = cityId, id = finalPointOfInterest.Id }, finalPointOfInterest);
+            { cityId = cityId, id = createdPOItoReturn.Id }, createdPOItoReturn);
         }
 
         [HttpPut("{cityId}/pointsofinterest/{id}")]
@@ -164,22 +122,24 @@ namespace RCForm.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            if (city==null)
+            if (!_repo.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            var pointOfInterestFromStore = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
+            var poiEntity = _repo.GetPointOfInterestForCity(cityId,id);
 
-            if (pointOfInterestFromStore==null)
+            if (poiEntity == null)
             {
                 return NotFound();
             }
 
-            pointOfInterestFromStore.Name = pointOfInterest.Name;
-            pointOfInterestFromStore.Description = pointOfInterest.Description;
+            Mapper.Map(pointOfInterest, poiEntity);
+
+            if (!_repo.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request.");
+            }
 
             return NoContent();
         }
@@ -188,30 +148,25 @@ namespace RCForm.API.Controllers
         [HttpPatch("{cityId}/pointsofinterest/{id}")]
         public IActionResult PartiallyUpdatePointOfInterest(int cityId, int id, [FromBody] JsonPatchDocument<PointOfInterestForUpdateDTO> patchDoc)
         {
+            //Find entity first then map it to a DTO before applying patchdoc.
+
             if (patchDoc==null)
             {
                 return BadRequest();
             }
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            if (city == null)
+            if (!_repo.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            var pointOfInterestFromStore = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
-
-            if (pointOfInterestFromStore == null)
+            var pointOfInterestEntity = _repo.GetPointOfInterestForCity(cityId, id);
+            if (pointOfInterestEntity == null)
             {
                 return NotFound();
             }
 
-            var pointOfInterestToPatch = new PointOfInterestForUpdateDTO()
-            {
-                Name = pointOfInterestFromStore.Name,
-                Description = pointOfInterestFromStore.Description
-            };
+            var pointOfInterestToPatch = Mapper.Map<PointOfInterestForUpdateDTO>(pointOfInterestEntity);
 
             patchDoc.ApplyTo(pointOfInterestToPatch, ModelState);
 
@@ -227,8 +182,12 @@ namespace RCForm.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            pointOfInterestFromStore.Name = pointOfInterestToPatch.Name;
-            pointOfInterestFromStore.Description = pointOfInterestToPatch.Description;
+            Mapper.Map(pointOfInterestToPatch, pointOfInterestEntity);
+
+            if (!_repo.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request.");
+            }
 
             return NoContent();
         }
@@ -236,21 +195,24 @@ namespace RCForm.API.Controllers
         [HttpDelete("{cityId}/pointsofinterest/{id}")]
         public IActionResult DeletePointOfInterest(int cityId, int id)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-
-            if (city==null)
+            if (!_repo.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            var poi = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
+            var poi = _repo.GetPointOfInterestForCity(cityId, id);
 
             if (poi==null)
             {
                 return NotFound();
             }
 
-            city.PointsOfInterest.Remove(poi);
+            _repo.DeletePointOfInterest(poi);
+
+            if (!_repo.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request.");
+            }
 
             _mailService.Send("Point of Interest Deleted.", $"Point of interest {poi.Name} with id {poi.Id} was deleted.");
 

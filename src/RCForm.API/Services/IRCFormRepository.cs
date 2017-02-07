@@ -14,5 +14,8 @@ namespace RCForm.API.Services
         City GetCity(int cityId, bool includePOI);
         IEnumerable<PointOfInterest> GetPointsOfInterestForCity(int cityId);
         PointOfInterest GetPointOfInterestForCity(int cityId, int poiId);
+        void AddPointOfInterestForCity(int cityId, PointOfInterest poi);
+        void DeletePointOfInterest(PointOfInterest poi);
+        bool Save();
     }
 }

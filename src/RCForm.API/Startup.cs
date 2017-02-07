@@ -84,6 +84,11 @@ namespace RCForm.API
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Entities.City, Models.CityWithoutPOIDTO>();
+                cfg.CreateMap<Entities.City, Models.CityDTO>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDTO>();
+                cfg.CreateMap<Models.PointOfInterestForCreationDTO, Entities.PointOfInterest>();
+                cfg.CreateMap<Models.PointOfInterestForUpdateDTO, Entities.PointOfInterest>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestForUpdateDTO>();
             });
 
             app.UseMvc();
